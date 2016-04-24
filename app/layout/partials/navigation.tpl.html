@@ -1,0 +1,52 @@
+<aside id="left-panel">
+
+    <!-- User info -->
+    <div login-info></div>
+    <!-- end user info -->
+
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
+
+        <ul data-smart-menu>
+<!--
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="app.home" title="Outlook">
+                    <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">{{getWord('Home')}}</span>
+                </a>
+            </li> -->
+
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="app.feeds" title="Feeds">
+                    <i class="fa fa-lg fa-fw fa-feed"></i> <span class="menu-item-parent">Feeds de Atividades</span>
+                </a>
+            </li>
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="app.friend-request" title="Feeds">
+                    <i class="fa fa-lg fa-fw fa-user-plus"></i> <span class="menu-item-parent">Pedidos de Amizades</span>
+                </a>
+            </li>
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="app.friends" title="Amigos">
+                    <i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent">Meus Amigos</span>
+                </a>
+            </li>
+            <li data-ui-sref-active="active">
+                <a data-ui-sref="app.users" title="Usuarios">
+                    <i class="fa fa-lg fa-fw fa-user-secret"></i> <span class="menu-item-parent">Usuarios</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- NOTE: This allows you to pull menu items from server -->
+        <!-- <ul data-smart-menu-items="/api/menu-items.json"></ul> -->
+    </nav>
+
+  <span class="minifyme" data-action="minifyMenu" minify-menu>
+    <i class="fa fa-arrow-circle-left hit"></i>
+  </span>
+
+</aside>
