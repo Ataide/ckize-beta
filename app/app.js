@@ -15,10 +15,8 @@ angular.module('app', [
     'restangular',
     'ui.router',
     'ui.bootstrap',
-
     // Smartadmin Angular Common Module
     'SmartAdmin',
-
     // App
     'app.auth',
     'app.layout',
@@ -26,22 +24,11 @@ angular.module('app', [
     'app.friends',
     //'app.chat',
     //'app.dashboard',
-    //'app.calendar',
-    //'app.inbox',
-    //'app.graphs',
-    //'app.tables',
-    'app.forms',
-    //'app.ui',
-    //'app.widgets',
-    //'app.maps',
-    //'app.appViews',
+    'app.appViews',
     // 'app.misc',
-    // 'app.smartAdmin',
-    //'app.eCommerce'
     'app.home'
 ])
 .config(function ($provide, $httpProvider, RestangularProvider) {
-
 
     // Intercept http calls.
     $provide.factory('myInterceptors', function ($q,$injector) {
@@ -110,9 +97,10 @@ angular.module('app', [
 })
 .constant('APP_CONFIG', window.appConfig)
 
-.run(function ($rootScope
-    , $state, $stateParams
-    ) {
+.run(function ($rootScope, $state, $stateParams,User, $auth) {
+    if($auth.isAuthenticated()){
+      User.update();
+    }
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     // editableOptions.theme = 'bs3';

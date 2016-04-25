@@ -6,11 +6,11 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <form method="post" class="well padding-bottom-10" onsubmit="return false;">
-                            <textarea rows="2" class="form-control" placeholder="O que você deseja dizer, ckizé dizer algo... fale agora...?"></textarea>
+                        <form class="well padding-bottom-10">
+                            <textarea ng-model="post.body" rows="2" class="form-control" placeholder="O que você deseja dizer, ckizé dizer algo... fale agora...?"></textarea>
 
                             <div class="margin-top-10">
-                                <button type="submit" class="btn btn-sm btn-primary pull-right">
+                                <button type="submit" class="btn btn-sm btn-primary pull-right" ng-click="publish()">
                                     Post
                                 </button>
                                 <a href-void class="btn btn-link profile-link-btn" rel="tooltip" data-placement="bottom" title="Add Location"><i class="fa fa-location-arrow"></i></a>
@@ -27,22 +27,19 @@
 
         <div class="col-sm-8">
             <div class="well well-sm">
-                <div class="row">
+                <div class="row" ng-repeat="post in feeds | orderBy:'-created_at'">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-body status">
                                     <div class="who clearfix">
                                       <!-- //img possible class "online"  -->
-                                        <img src="styles/img/avatars/sunny.png" alt="img">
-                                        <span class="name"><b>You</b> shared a blog</span>
-                                        <span class="from"><b>1 days ago</b> via Mobile, Sydney, Australia</span>
+                                        <img ng-src="{{post.poster_profile_image}}" alt="img">
+                                        <span class="name"><b>{{post.poster_firstname}}</b> publicou um post.</span>
+                                        <span class="from"><b>{{post.created_at}}</b></span>
                                     </div>
                                     <div class="text">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in mauris elit. Ut nec arcu pretium eros varius porta vitae sit amet ipsum. Suspendisse porttitor, libero in rutrum pretium, lectus arcu maximus massa, ut condimentum metus libero laoreet
-                                            lectus. Phasellus a lectus pulvinar, lacinia sem quis, suscipit turpis.
-                                            <br>
-                                            <br> Nam ipsum orci, blandit in lectus ut, viverra vehicula nisl. Proin eu arcu ut neque tempus viverra nec ac tellus.
+                                            {{post.body}}
                                         </p>
                                     </div>
                                     <ul class="links">
@@ -58,9 +55,6 @@
                                     </ul>
                                 </div>
                             </div>
-
-
-
                     </div>
                 </div>
             </div>

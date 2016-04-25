@@ -1,7 +1,38 @@
 <div id="content">
-<div class="row">
-    <big-breadcrumbs items="['Page Header', 'Subtitle']" icon="home" class="col-xs-12 col-sm-7 col-md-7 col-lg-4"></big-breadcrumbs>
-</div>
+    <div class="row">
+        <div class="col-md-8">
 
-  <h1>Friend Request Page</h1>
+
+            <div class="panel panel-default">
+
+                <div class="panel-body status">
+                    <div class="who clearfix">
+                        <h4>Seus pedidos de amizades.</h4>
+                    </div>
+
+                    <div class="who clearfix" ng-repeat="request in friendRequests.data">
+                      <!-- //possible class class="online" -->
+                        <img ng-src="{{request.profile.profile_picture_url || 'styles/img/avatars/male.png' }}" alt="img">
+                        <span class="name font-sm">
+                          <b>{{request.profile.display_name}}</b>
+                          <span class="text-muted">diz:</span>
+                        <b>  <span class="pull-right font-xs text-muted"></span></b>
+                        <br>
+                      <p>
+                        Olá, gostaria de fazer parte de seus contatos. Obrigado.
+                      </p>
+                      <span class="pull-right">
+                        <button class="btn btn-xs btn-danger" ng-click="reject(request.id)"> Rejeitar</button>
+                        <button class="btn btn-xs btn-success" ng-click="accept(request)"> Aceitar</button>
+                      </span>
+
+                        </span>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
 </div>

@@ -25,7 +25,12 @@ angular.module('app.friends', ['ui.router'])
           views: {
             "content@app": {
               templateUrl: 'app/friends/views/friend-request.html',
-              controller: 'FriendsCtrl'
+              controller: 'FriendRequestsCtrl'
+            }
+          },
+          resolve:{
+            friendRequests: function(FriendsServices){
+              return FriendsServices.getFriendRequests();
             }
           }
         })
