@@ -267,7 +267,7 @@ if (appConfig.voice_command) {
 }
 
 appConfig.apiRootUrl = 'api';
-appConfig.apiUrl = 'http://localhost:8000/api';
+appConfig.apiUrl = 'http://localhost/api/api';
 
 window.appConfig = appConfig;
 
