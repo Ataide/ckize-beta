@@ -4,24 +4,23 @@
             <div class="panel panel-default">
                 <div class="panel-body status">
                     <div class="who clearfix">
-                        <h4>Veja quem são seus amigos.</h4>
+                        <h4>Busque pessoas que você conheça.</h4>
                     </div>
                     <div class="row">
                         <div class="text">
-                            <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="friend in friends">
+                            <div class="col-sm-12 col-md-6 col-lg-4" ng-repeat="user in users">
                                 <div class="well text-center connect">
-                                    <img ng-src="{{friend.profile.profile_picture_url || 'styles/img/avatars/male.png'}}" width="72" height="72" alt="img" class="margin-bottom-5 margin-top-5">
+                                    <img ng-src="{{user.profile.profile_picture_url || 'styles/img/avatars/male.png'}}" width="72" alt="img" class="margin-bottom-5 margin-top-5">
                                     <br>
-                                    <span class="font-xs"><b>{{friend.name}}</b></span><br>
-                                    <button class="btn btn-xs btn-danger margin-top-5 margin-bottom-5" ng-click="removeFriend(friend.id)"><span class="font-xs">Desfazer</span></button>
+                                    <span class="font-xs"><b>{{user.profile.display_name}}</b></span><br>
+                                    <button class="btn btn-xs btn-success margin-top-5 margin-bottom-5" ng-click="sendFriendRequest(user)"> <span class="font-xs">Conectar</span> </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <ul class="links text-right">
                         <li class="">
-                            <a href="javascript:void(0);">Find people you know <i class="fa fa-arrow-right"></i> </a>
+                            <a href="javascript:void(0);">Mais Resultados <i class="fa fa-arrow-down"></i> </a>
                         </li>
                     </ul>
                 </div>

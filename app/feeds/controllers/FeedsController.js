@@ -3,6 +3,9 @@
 angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService) {
   $scope.post = {};
 
+  getFeeds();
+
+
   function getFeeds() {
       FeedsService.getFeeds().then(function(response) {
         $scope.feeds = response.data;

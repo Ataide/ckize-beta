@@ -267,7 +267,7 @@ if (appConfig.voice_command) {
 }
 
 appConfig.apiRootUrl = 'api';
-appConfig.apiUrl = 'http://localhost/api/api';
+appConfig.apiUrl = 'http://192.168.2.18/api/api';
 
 window.appConfig = appConfig;
 
@@ -554,8 +554,8 @@ angular.module('app.auth', ['ui.router','satellizer'])
 
   .config(function($stateProvider,$authProvider) {
 
-    $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
-    $authProvider.signupUrl = 'http://localhost/api/api/register';
+    $authProvider.loginUrl = 'http://192.168.2.18/api/api/authenticate';
+    $authProvider.signupUrl = 'http://192.168.2.18/api/api/register';
 
 
     $stateProvider
@@ -705,6 +705,11 @@ angular.module('app.friends', ['ui.router'])
                     templateUrl: 'app/friends/views/friends.html',
                     controller: 'FriendsCtrl'
                 }
+            },
+            resolve:{
+              friends: function(FriendsServices){
+                return FriendsServices.getFriends();
+              }
             }
         })
         .state('app.friend-request', {
@@ -723,6 +728,23 @@ angular.module('app.friends', ['ui.router'])
               return FriendsServices.getFriendRequests();
             }
           }
+        })
+        .state('app.peoples', {
+            url: '/peoples',
+            data: {
+                title: 'Todos'
+            },
+            views: {
+                "content@app": {
+                    templateUrl: 'app/friends/views/findFriends.html',
+                    controller: 'FindFriendsCtrl'
+                }
+            },
+            resolve:{
+              peoples: function(FriendsServices){
+                return FriendsServices.getAllUsers();
+              }
+            }
         })
 
 });
@@ -1451,7 +1473,7 @@ $templateCache.put("app/dashboard/todo/todo-widget.tpl.html","<div id=\"todo-wid
 $templateCache.put("app/layout/language/language-selector.tpl.html","<ul class=\"header-dropdown-list hidden-xs ng-cloak\" ng-controller=\"LanguagesCtrl\">\n    <li class=\"dropdown\" dropdown>\n        <a class=\"dropdown-toggle\"  data-toggle=\"dropdown\" href> <img src=\"styles/img/blank.gif\" class=\"flag flag-{{currentLanguage.key}}\" alt=\"{{currentLanguage.alt}}\"> <span> {{currentLanguage.title}} </span>\n            <i class=\"fa fa-angle-down\"></i> </a>\n        <ul class=\"dropdown-menu pull-right\">\n            <li ng-class=\"{active: language==currentLanguage}\" ng-repeat=\"language in languages\">\n                <a ng-click=\"selectLanguage(language)\" ><img src=\"styles/img/blank.gif\" class=\"flag flag-{{language.key}}\"\n                                                   alt=\"{{language.alt}}\"> {{language.title}}</a>\n            </li>\n        </ul>\n    </li>\n</ul>");
 $templateCache.put("app/layout/partials/footer.tpl.html","<div class=\"page-footer\">\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-6\">\n            <span class=\"txt-color-white\">SmartAdmin WebApp © 2013-2016</span>\n        </div>\n\n        <div class=\"col-xs-6 col-sm-6 text-right hidden-xs\">\n            <div class=\"txt-color-white inline-block\">\n                <i class=\"txt-color-blueLight hidden-mobile\">Last account activity <i class=\"fa fa-clock-o\"></i>\n                    <strong>52 mins ago &nbsp;</strong> </i>\n\n                <div class=\"btn-group dropup\">\n                    <button class=\"btn btn-xs dropdown-toggle bg-color-blue txt-color-white\" data-toggle=\"dropdown\">\n                        <i class=\"fa fa-link\"></i> <span class=\"caret\"></span>\n                    </button>\n                    <ul class=\"dropdown-menu pull-right text-left\">\n                        <li>\n                            <div class=\"padding-5\">\n                                <p class=\"txt-color-darken font-sm no-margin\">Download Progress</p>\n\n                                <div class=\"progress progress-micro no-margin\">\n                                    <div class=\"progress-bar progress-bar-success\" style=\"width: 50%;\"></div>\n                                </div>\n                            </div>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <div class=\"padding-5\">\n                                <p class=\"txt-color-darken font-sm no-margin\">Server Load</p>\n\n                                <div class=\"progress progress-micro no-margin\">\n                                    <div class=\"progress-bar progress-bar-success\" style=\"width: 20%;\"></div>\n                                </div>\n                            </div>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <div class=\"padding-5\">\n                                <p class=\"txt-color-darken font-sm no-margin\">Memory Load <span class=\"text-danger\">*critical*</span>\n                                </p>\n\n                                <div class=\"progress progress-micro no-margin\">\n                                    <div class=\"progress-bar progress-bar-danger\" style=\"width: 70%;\"></div>\n                                </div>\n                            </div>\n                        </li>\n                        <li class=\"divider\"></li>\n                        <li>\n                            <div class=\"padding-5\">\n                                <button class=\"btn btn-block btn-default\">refresh</button>\n                            </div>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
 $templateCache.put("app/layout/partials/header.tpl.html","<header id=\"header\">\n    <div id=\"logo-group\">\n\n        <!-- PLACE YOUR LOGO HERE -->\n        <span>\n      <img src=\"styles/img/logo/logo.png\" width=\"36\" height=\"36\" alt=\"Ckize!\">\n       iZe\n     </span>\n        <!-- END LOGO PLACEHOLDER -->\n\n        <!-- Note: The activity badge color changes when clicked and resets the number to 0\n    Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->\n        <span id=\"activity\" class=\"activity-dropdown\" activities-dropdown-toggle>\n        <i class=\"fa fa-user\"></i>\n        <b class=\"badge bg-color-red\">21</b>\n    </span>\n        <div smart-include=\"app/dashboard/activities/activities.html\"></div>\n    </div>\n\n    <!-- pulled right: nav area -->\n    <div class=\"pull-right\">\n\n        <!-- collapse menu button -->\n        <div id=\"hide-menu\" class=\"btn-header pull-right\">\n            <span> <a toggle-menu title=\"Collapse Menu\"><i\n                class=\"fa fa-reorder\"></i></a> </span>\n        </div>\n        <!-- end collapse menu -->\n\n        <!-- #MOBILE -->\n        <!-- Top menu profile link : this shows only when top menu is active -->\n        <ul id=\"mobile-profile-img\" class=\"header-dropdown-list hidden-xs padding-5\">\n            <li class=\"\">\n                <a href=\"#\" class=\"dropdown-toggle no-margin userdropdown\" data-toggle=\"dropdown\">\n                    <img src=\"styles/img/avatars/sunny.png\" alt=\"John Doe\" class=\"online\" />\n                </a>\n                <ul class=\"dropdown-menu pull-right\">\n                    <li>\n                        <a href-void class=\"padding-10 padding-top-0 padding-bottom-0\"><i\n                            class=\"fa fa-cog\"></i> Setting</a>\n                    </li>\n                    <li class=\"divider\"></li>\n                    <li>\n                        <a ui-sref=\"app.appViews.profileDemo\" class=\"padding-10 padding-top-0 padding-bottom-0\"> <i class=\"fa fa-user\"></i>\n                            <u>P</u>rofile</a>\n                    </li>\n                    <li class=\"divider\"></li>\n                    <li>\n                        <a href-void class=\"padding-10 padding-top-0 padding-bottom-0\" data-action=\"toggleShortcut\"><i class=\"fa fa-arrow-down\"></i> <u>S</u>hortcut</a>\n                    </li>\n                    <li class=\"divider\"></li>\n                    <li>\n                        <a href-void class=\"padding-10 padding-top-0 padding-bottom-0\" data-action=\"launchFullscreen\"><i class=\"fa fa-arrows-alt\"></i> Full <u>S</u>creen</a>\n                    </li>\n                    <li class=\"divider\"></li>\n                    <li>\n                        <a href=\"#/login\" class=\"padding-10 padding-top-5 padding-bottom-5\" data-action=\"userLogout\"><i\n                            class=\"fa fa-sign-out fa-lg\"></i> <strong><u>L</u>ogout</strong></a>\n                    </li>\n                </ul>\n            </li>\n        </ul>\n\n        <!-- logout button -->\n        <div id=\"logout\" class=\"btn-header transparent pull-right\">\n            <span>\n               <a title=\"Sign Out\" user-logout>\n              <i class=\"fa fa-sign-out\"></i>\n            </a>\n          </span>\n        </div>\n        <!-- end logout button -->\n\n        <!-- search mobile button (this is hidden till mobile view port) -->\n        <div id=\"search-mobile\" class=\"btn-header transparent pull-right\" data-search-mobile>\n            <span> <a href=\"#\" title=\"Search\"><i class=\"fa fa-search\"></i></a> </span>\n        </div>\n        <!-- end search mobile button -->\n\n        <!-- input: search field -->\n        <form action=\"#/search\" class=\"header-search pull-right\">\n            <input id=\"search-fld\" type=\"text\" name=\"param\" placeholder=\"Find reports and more\" data-autocomplete=\'[\n					\"ActionScript\",\n					\"AppleScript\",\n					\"Asp\",\n					\"BASIC\",\n					\"C\",\n					\"C++\",\n					\"Clojure\",\n					\"COBOL\",\n					\"ColdFusion\",\n					\"Erlang\",\n					\"Fortran\",\n					\"Groovy\",\n					\"Haskell\",\n					\"Java\",\n					\"JavaScript\",\n					\"Lisp\",\n					\"Perl\",\n					\"PHP\",\n					\"Python\",\n					\"Ruby\",\n					\"Scala\",\n					\"Scheme\"]\'>\n            <button type=\"submit\">\n                <i class=\"fa fa-search\"></i>\n            </button>\n            <a href=\"$\" id=\"cancel-search-js\" title=\"Cancel Search\"><i class=\"fa fa-times\"></i></a>\n        </form>\n        <!-- end input: search field -->\n\n        <!-- fullscreen button -->\n        <div id=\"fullscreen\" class=\"btn-header transparent pull-right\">\n            <span> <a full-screen title=\"Full Screen\"><i\n                class=\"fa fa-arrows-alt\"></i></a> </span>\n        </div>\n        <!-- end fullscreen button -->\n\n        <!-- #Voice Command: Start Speech -->\n        <div id=\"speech-btn\" class=\"btn-header transparent pull-right hidden-sm hidden-xs\">\n            <div>\n                <a title=\"Voice Command\" id=\"voice-command-btn\" speech-recognition><i class=\"fa fa-microphone\"></i></a>\n\n                <div class=\"popover bottom\">\n                    <div class=\"arrow\"></div>\n                    <div class=\"popover-content\">\n                        <h4 class=\"vc-title\">Voice command activated <br>\n                            <small>Please speak clearly into the mic</small>\n                        </h4>\n                        <h4 class=\"vc-title-error text-center\">\n                            <i class=\"fa fa-microphone-slash\"></i> Voice command failed\n                            <br>\n                            <small class=\"txt-color-red\">Must <strong>\"Allow\"</strong> Microphone</small>\n                            <br>\n                            <small class=\"txt-color-red\">Must have <strong>Internet Connection</strong></small>\n                        </h4>\n                        <a href-void class=\"btn btn-success\" id=\"speech-help-btn\">See Commands</a>\n                        <a href-void class=\"btn bg-color-purple txt-color-white\" onclick=\"$(\'#speech-btn .popover\').fadeOut(50);\">Close Popup</a>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <!-- end voice command -->\n\n\n        <!-- multiple lang dropdown : find all flags in the flags page -->\n        <language-selector></language-selector>\n        <!-- end multiple lang -->\n\n    </div>\n    <!-- end pulled right: nav area -->\n\n</header>\n");
-$templateCache.put("app/layout/partials/navigation.tpl.html","<aside id=\"left-panel\">\n\n    <!-- User info -->\n    <div login-info></div>\n    <!-- end user info -->\n\n    <nav>\n        <!-- NOTE: Notice the gaps after each icon usage <i></i>..\n        Please note that these links work a bit different than\n        traditional href=\"\" links. See documentation for details.\n        -->\n\n        <ul data-smart-menu>\n<!--\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.home\" title=\"Outlook\">\n                    <i class=\"fa fa-lg fa-fw fa-home\"></i> <span class=\"menu-item-parent\">{{getWord(\'Home\')}}</span>\n                </a>\n            </li> -->\n\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.feeds\" title=\"Feeds\">\n                    <i class=\"fa fa-lg fa-fw fa-feed\"></i> <span class=\"menu-item-parent\">Feeds de Atividades</span>\n                </a>\n            </li>\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.friend-request\" title=\"Feeds\">\n                    <i class=\"fa fa-lg fa-fw fa-user-plus\"></i> <span class=\"menu-item-parent\">Pedidos de Amizades</span>\n                </a>\n            </li>\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.friends\" title=\"Amigos\">\n                    <i class=\"fa fa-lg fa-fw fa-users\"></i> <span class=\"menu-item-parent\">Meus Amigos</span>\n                </a>\n            </li>\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.users\" title=\"Usuarios\">\n                    <i class=\"fa fa-lg fa-fw fa-user-secret\"></i> <span class=\"menu-item-parent\">Usuarios</span>\n                </a>\n            </li>\n\n        </ul>\n\n        <!-- NOTE: This allows you to pull menu items from server -->\n        <!-- <ul data-smart-menu-items=\"/api/menu-items.json\"></ul> -->\n    </nav>\n\n  <span class=\"minifyme\" data-action=\"minifyMenu\" minify-menu>\n    <i class=\"fa fa-arrow-circle-left hit\"></i>\n  </span>\n\n</aside>\n");
+$templateCache.put("app/layout/partials/navigation.tpl.html","<aside id=\"left-panel\">\n\n    <!-- User info -->\n    <div login-info></div>\n    <!-- end user info -->\n\n    <nav>\n        <!-- NOTE: Notice the gaps after each icon usage <i></i>..\n        Please note that these links work a bit different than\n        traditional href=\"\" links. See documentation for details.\n        -->\n\n        <ul data-smart-menu>\n<!--\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.home\" title=\"Outlook\">\n                    <i class=\"fa fa-lg fa-fw fa-home\"></i> <span class=\"menu-item-parent\">{{getWord(\'Home\')}}</span>\n                </a>\n            </li> -->\n\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.feeds\" title=\"Feeds\">\n                    <i class=\"fa fa-lg fa-fw fa-feed\"></i> <span class=\"menu-item-parent\">Feeds de Atividades</span>\n                </a>\n            </li>\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.friend-request\" title=\"Feeds\">\n                    <i class=\"fa fa-lg fa-fw fa-user-plus\"></i> <span class=\"menu-item-parent\">Pedidos de Amizades</span>\n                </a>\n            </li>\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.friends\" title=\"Amigos\">\n                    <i class=\"fa fa-lg fa-fw fa-users\"></i> <span class=\"menu-item-parent\">Meus Amigos</span>\n                </a>\n            </li>\n            <li data-ui-sref-active=\"active\">\n                <a data-ui-sref=\"app.peoples\" title=\"Usuarios\">\n                    <i class=\"fa fa-lg fa-fw fa-user-secret\"></i> <span class=\"menu-item-parent\">Usuarios</span>\n                </a>\n            </li>\n\n        </ul>\n\n        <!-- NOTE: This allows you to pull menu items from server -->\n        <!-- <ul data-smart-menu-items=\"/api/menu-items.json\"></ul> -->\n    </nav>\n\n  <span class=\"minifyme\" data-action=\"minifyMenu\" minify-menu>\n    <i class=\"fa fa-arrow-circle-left hit\"></i>\n  </span>\n\n</aside>\n");
 $templateCache.put("app/layout/partials/sub-header.tpl.html","<div class=\"col-xs-12 col-sm-5 col-md-5 col-lg-8\" data-sparkline-container>\n    <ul id=\"sparks\" class=\"\">\n        <li class=\"sparks-info\">\n            <h5> My Income <span class=\"txt-color-blue\">$47,171</span></h5>\n            <div class=\"sparkline txt-color-blue hidden-mobile hidden-md hidden-sm\">\n                1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471\n            </div>\n        </li>\n        <li class=\"sparks-info\">\n            <h5> Site Traffic <span class=\"txt-color-purple\"><i class=\"fa fa-arrow-circle-up\"></i>&nbsp;45%</span></h5>\n            <div class=\"sparkline txt-color-purple hidden-mobile hidden-md hidden-sm\">\n                110,150,300,130,400,240,220,310,220,300, 270, 210\n            </div>\n        </li>\n        <li class=\"sparks-info\">\n            <h5> Site Orders <span class=\"txt-color-greenDark\"><i class=\"fa fa-shopping-cart\"></i>&nbsp;2447</span></h5>\n            <div class=\"sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm\">\n                110,150,300,130,400,240,220,310,220,300, 270, 210\n            </div>\n        </li>\n    </ul>\n</div>\n			");
 $templateCache.put("app/layout/partials/voice-commands.tpl.html","<!-- TRIGGER BUTTON:\n<a href=\"/my-ajax-page.html\" data-toggle=\"modal\" data-target=\"#remoteModal\" class=\"btn btn-default\">Open Modal</a>  -->\n\n<!-- MODAL PLACE HOLDER\n<div class=\"modal fade\" id=\"remoteModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"remoteModalLabel\" aria-hidden=\"true\">\n<div class=\"modal-dialog\">\n<div class=\"modal-content\"></div>\n</div>\n</div>   -->\n<!--////////////////////////////////////-->\n\n<!--<div class=\"modal-header\">\n<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">\n&times;\n</button>\n<h4 class=\"modal-title\" id=\"myModalLabel\">Command List</h4>\n</div> -->\n<div class=\"modal-body\">\n\n	<h1><i class=\"fa fa-microphone text-muted\"></i>&nbsp;&nbsp; SmartAdmin Voice Command</h1>\n	<hr class=\"simple\">\n	<h5>Instruction</h5>\n\n	Click <span class=\"text-success\">\"Allow\"</span> to access your microphone and activate Voice Command.\n	You will notice a <span class=\"text-primary\"><strong>BLUE</strong> Flash</span> on the microphone icon indicating activation.\n	The icon will appear <span class=\"text-danger\"><strong>RED</strong></span> <span class=\"label label-danger\"><i class=\"fa fa-microphone fa-lg\"></i></span> if you <span class=\"text-danger\">\"Deny\"</span> access or don\'t have any microphone installed.\n	<br>\n	<br>\n	As a security precaution, your browser will disconnect the microphone every 60 to 120 seconds (sooner if not being used). In which case Voice Command will prompt you again to <span class=\"text-success\">\"Allow\"</span> or <span class=\"text-danger\">\"Deny\"</span> access to your microphone.\n	<br>\n	<br>\n	If you host your page over <strong>http<span class=\"text-success\">s</span></strong> (secure socket layer) protocol you can wave this security measure and have an unintrupted Voice Command.\n	<br>\n	<br>\n	<h5>Commands</h5>\n	<ul>\n		<li>\n			<strong>\'show\' </strong> then say the <strong>*page*</strong> you want to go to. For example <strong>\"show inbox\"</strong> or <strong>\"show calendar\"</strong>\n		</li>\n		<li>\n			<strong>\'mute\' </strong> - mutes all sound effects for the theme.\n		</li>\n		<li>\n			<strong>\'sound on\'</strong> - unmutes all sound effects for the theme.\n		</li>\n		<li>\n			<span class=\"text-danger\"><strong>\'stop\'</strong></span> - deactivates voice command.\n		</li>\n		<li>\n			<span class=\"text-primary\"><strong>\'help\'</strong></span> - brings up the command list\n		</li>\n		<li>\n			<span class=\"text-danger\"><strong>\'got it\'</strong></span> - closes help modal\n		</li>\n		<li>\n			<strong>\'hide navigation\'</strong> - toggle navigation collapse\n		</li>\n		<li>\n			<strong>\'show navigation\'</strong> - toggle navigation to open (can be used again to close)\n		</li>\n		<li>\n			<strong>\'scroll up\'</strong> - scrolls to the top of the page\n		</li>\n		<li>\n			<strong>\'scroll down\'</strong> - scrollts to the bottom of the page\n		</li>\n		<li>\n			<strong>\'go back\' </strong> - goes back in history (history -1 click)\n		</li>\n		<li>\n			<strong>\'logout\'</strong> - logs you out\n		</li>\n	</ul>\n	<br>\n	<h5>Adding your own commands</h5>\n	Voice Command supports up to 80 languages. Adding your own commands is extreamly easy. All commands are stored inside <strong>app.config.js</strong> file under the <code>var commands = {...}</code>.\n\n	<hr class=\"simple\">\n	<div class=\"text-right\">\n		<button type=\"button\" class=\"btn btn-success btn-lg\" data-dismiss=\"modal\">\n			Got it!\n		</button>\n	</div>\n\n</div>\n<!--<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Got it!</button>\n</div> -->\n");
 $templateCache.put("app/layout/shortcut/shortcut.tpl.html","<div id=\"shortcut\">\n	<ul>\n		<li>\n			<a href=\"#/inbox/\" class=\"jarvismetro-tile big-cubes bg-color-blue\"> <span class=\"iconbox\"> <i class=\"fa fa-envelope fa-4x\"></i> <span>Mail <span class=\"label pull-right bg-color-darken\">14</span></span> </span> </a>\n		</li>\n		<li>\n			<a href=\"#/calendar\" class=\"jarvismetro-tile big-cubes bg-color-orangeDark\"> <span class=\"iconbox\"> <i class=\"fa fa-calendar fa-4x\"></i> <span>Calendar</span> </span> </a>\n		</li>\n		<li>\n			<a href=\"#/maps\" class=\"jarvismetro-tile big-cubes bg-color-purple\"> <span class=\"iconbox\"> <i class=\"fa fa-map-marker fa-4x\"></i> <span>Maps</span> </span> </a>\n		</li>\n		<li>\n			<a href=\"#/invoice\" class=\"jarvismetro-tile big-cubes bg-color-blueDark\"> <span class=\"iconbox\"> <i class=\"fa fa-book fa-4x\"></i> <span>Invoice <span class=\"label pull-right bg-color-darken\">99</span></span> </span> </a>\n		</li>\n		<li>\n			<a href=\"#/gallery\" class=\"jarvismetro-tile big-cubes bg-color-greenLight\"> <span class=\"iconbox\"> <i class=\"fa fa-picture-o fa-4x\"></i> <span>Gallery </span> </span> </a>\n		</li>\n		<li>\n			<a href=\"#/profile\" class=\"jarvismetro-tile big-cubes selected bg-color-pinkDark\"> <span class=\"iconbox\"> <i class=\"fa fa-user fa-4x\"></i> <span>My Profile </span> </span> </a>\n		</li>\n	</ul>\n</div>");
@@ -1578,6 +1600,9 @@ angular.module('app').controller('TodoCtrl', function ($scope, $timeout, Todo) {
 angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService) {
   $scope.post = {};
 
+  getFeeds();
+
+
   function getFeeds() {
       FeedsService.getFeeds().then(function(response) {
         $scope.feeds = response.data;
@@ -1600,11 +1625,44 @@ angular.module('app.feeds').controller('FeedsController', function ($scope,$http
 
 });
 
+(function(){
+  'use strict';
+
+  angular.module('app.friends')
+    .controller('FindFriendsCtrl', function($scope,peoples, FriendsServices){
+
+      $scope.users = peoples.data;
+
+      $scope.sendFriendRequest = function(user){
+        FriendsServices.sendFriendRequest(user.id).then(function(response){
+          $.smallBox({
+              title: "Solicitação Enviado.",
+              content: "Aguarde "+user.profile.display_name+" aceitar suas solicitação.",
+              color: "#296191",
+              iconSmall: "fa fa-thumbs-up bounce animated",
+              timeout: 5000
+          });
+        });
+
+      }
+
+    });
+
+})();
+
 'use strict';
 
-angular.module('app.friends').controller('FriendsCtrl', function ($scope, friendRequests) {
+angular.module('app.friends').controller('FriendsCtrl', function ($scope,$state,friends,FriendsServices) {
 
-  console.log(friendRequests);
+  $scope.friends = friends.data;
+
+  $scope.removeFriend = function(id){
+    FriendsServices.removeFriend(id).then(function(response){
+        $state.go('app.friends',{},{reload:true});
+    });
+  }
+
+  console.log(friends.data);
 
 
 });
@@ -1613,7 +1671,7 @@ angular.module('app.friends').controller('FriendsCtrl', function ($scope, friend
   'use strict';
 
   angular.module('app.friends')
-    .controller('FriendRequestsCtrl', function($scope, FriendsServices, friendRequests){
+    .controller('FriendRequestsCtrl', function($scope,$state, FriendsServices, friendRequests){
 
       console.log(friendRequests);
 
@@ -1621,8 +1679,7 @@ angular.module('app.friends').controller('FriendsCtrl', function ($scope, friend
 
       $scope.reject = function(userId){
         FriendsServices.rejectFriendRequest(userId).then(function(response) {
-          console.log(response);
-
+          $state.go('app.friend-request',{},{reload:true});
         });
       }
 
@@ -1635,6 +1692,7 @@ angular.module('app.friends').controller('FriendsCtrl', function ($scope, friend
               iconSmall: "fa fa-thumbs-up bounce animated",
               timeout: 4000
           });
+          $state.go('app.friend-request',{},{reload:true});
         });
       }
 
@@ -1651,14 +1709,34 @@ angular.module('app.friends').controller('FriendsCtrl', function ($scope, friend
           getFriendRequests: getFriendRequests,
           acceptFriendRequest: acceptFriendRequest,
           rejectFriendRequest: rejectFriendRequest,
+          sendFriendRequest: sendFriendRequest,
+          getFriends: getFriends,
+          removeFriend: removeFriend,
+          getAllUsers: getAllUsers,
         };
+
+        function getAllUsers(){
+          return $http.get(APP_CONFIG.apiUrl+'/users');
+        }
+
+        function removeFriend(id){
+          return $http.delete(APP_CONFIG.apiUrl+'/friends/'+id);
+        }
+
+        function getFriends(){
+          return $http.get(APP_CONFIG.apiUrl+'/friends');
+        }
+
+        function sendFriendRequest(userId){
+          return $http.post(APP_CONFIG.apiUrl+'/friend-requests',{'userId': userId});
+        }
 
         function rejectFriendRequest(userId){
           return $http.delete(APP_CONFIG.apiUrl+'/friend-requests/'+userId);
         }
 
         function acceptFriendRequest(userId){
-          return $http.post(APP_CONFIG.apiUrl+'/friends', {userId : userId});
+          return $http.post(APP_CONFIG.apiUrl+'/friends', {'userId' : userId});
         }
 
         function getFriendRequests(){

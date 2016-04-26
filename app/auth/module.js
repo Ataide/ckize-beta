@@ -4,8 +4,8 @@ angular.module('app.auth', ['ui.router','satellizer'])
 
   .config(function($stateProvider,$authProvider) {
 
-    $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
-    $authProvider.signupUrl = 'http://localhost/api/api/register';
+    $authProvider.loginUrl = 'http://192.168.2.18/api/api/authenticate';
+    $authProvider.signupUrl = 'http://192.168.2.18/api/api/register';
 
 
     $stateProvider

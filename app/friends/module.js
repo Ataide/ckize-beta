@@ -15,6 +15,11 @@ angular.module('app.friends', ['ui.router'])
                     templateUrl: 'app/friends/views/friends.html',
                     controller: 'FriendsCtrl'
                 }
+            },
+            resolve:{
+              friends: function(FriendsServices){
+                return FriendsServices.getFriends();
+              }
             }
         })
         .state('app.friend-request', {
@@ -33,6 +38,23 @@ angular.module('app.friends', ['ui.router'])
               return FriendsServices.getFriendRequests();
             }
           }
+        })
+        .state('app.peoples', {
+            url: '/peoples',
+            data: {
+                title: 'Todos'
+            },
+            views: {
+                "content@app": {
+                    templateUrl: 'app/friends/views/findFriends.html',
+                    controller: 'FindFriendsCtrl'
+                }
+            },
+            resolve:{
+              peoples: function(FriendsServices){
+                return FriendsServices.getAllUsers();
+              }
+            }
         })
 
 });

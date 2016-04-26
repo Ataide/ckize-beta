@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.friends')
-    .controller('FriendRequestsCtrl', function($scope, FriendsServices, friendRequests){
+    .controller('FriendRequestsCtrl', function($scope,$state, FriendsServices, friendRequests){
 
       console.log(friendRequests);
 
@@ -10,8 +10,7 @@
 
       $scope.reject = function(userId){
         FriendsServices.rejectFriendRequest(userId).then(function(response) {
-          console.log(response);
-
+          $state.go('app.friend-request',{},{reload:true});
         });
       }
 
@@ -24,6 +23,7 @@
               iconSmall: "fa fa-thumbs-up bounce animated",
               timeout: 4000
           });
+          $state.go('app.friend-request',{},{reload:true});
         });
       }
 
