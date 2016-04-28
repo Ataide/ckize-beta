@@ -4,11 +4,11 @@ angular.module('app.auth', ['ui.router','satellizer'])
 
   .config(function($stateProvider,$authProvider) {
 
-    $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
-    $authProvider.signupUrl = 'http://localhost/api/api/register';
-    //
-    // $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
-    // $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
+    // $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
+    // $authProvider.signupUrl = 'http://localhost/api/api/register';
+    // 
+    $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
+    $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
 
 
     $stateProvider
