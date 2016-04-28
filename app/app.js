@@ -26,7 +26,8 @@ angular.module('app', [
     //'app.dashboard',
     'app.appViews',
     // 'app.misc',
-    'app.home'
+    'app.home',
+    // 'ngSocket'
 ])
 .config(function ($provide, $httpProvider, RestangularProvider) {
 
