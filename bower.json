@@ -44,7 +44,7 @@
     "summernote": "~0.5.10",
     "to-markdown": "~1.2.1",
     "x-editable": "~1.5.1",
-    "dropzone": "~4.2.0",    
+    "dropzone": "~4.2.0",
     "satellizer": "^0.14.0",
     "angular-socket-io": "^0.7.0"
   }

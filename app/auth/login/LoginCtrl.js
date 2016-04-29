@@ -4,8 +4,8 @@ angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state
 
     $scope.login = function(credentials) {
       $auth.login(credentials).then(function(data) {
-          User.update();
-          $state.go('app.feeds',{},{reload:true});
+        User.update();
+        $state.go('app.feeds',{},{reload:true});
       }).catch(function (response) {
         delete $scope.credentials;
       });

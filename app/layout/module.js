@@ -11,7 +11,8 @@ angular.module('app.layout', ['ui.router'])
             abstract: true,
             views: {
                 root: {
-                    templateUrl: 'app/layout/layout.tpl.html'
+                    templateUrl: 'app/layout/layout.tpl.html',
+                    controller: 'AppCtrl as app'
                 }
             }
         });

@@ -17,8 +17,8 @@
       "moment-timezone",
       "notification",
       "smartwidgets",
-      "satellizer",
-      "angular-socket-io"
+      "satellizer" 
+
 
     ],
     "vendor.ui": [
@@ -50,7 +50,7 @@
 
   },
   "paths": {
-    "angular-socket-io": "bower_components/angular-socket-io/socket.min.js",
+
     "satellizer": "bower_components/satellizer/satellizer.min.js",
     "jquery": "bower_components/jquery/jquery.min.js",
     "jquery-ui": "bower_components/jquery-ui/jquery-ui.min.js",
@@ -75,7 +75,7 @@
     "bootstrap-markdown": "bower_components/bootstrap-markdown/js/bootstrap-markdown.js",
     "ckeditor": "bower_components/ckeditor/ckeditor.js",
     "moment": "bower_components/moment/min/moment-with-locales.min.js",
-    "moment-timezone": "bower_components/moment-timezone/builds/moment-timezone.min.js",    
+    "moment-timezone": "bower_components/moment-timezone/builds/moment-timezone.min.js",
     "jquery-maskedinput": "bower_components/jquery-maskedinput/dist/jquery.maskedinput.min.js",
     "jquery-validation": "bower_components/jquery-validation/dist/jquery.validate.min.js",
     "jquery-form": "bower_components/jquery-form/jquery.form",

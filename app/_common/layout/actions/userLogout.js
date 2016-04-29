@@ -14,6 +14,8 @@ angular.module('SmartAdmin.Layout').directive('userLogout', function($state,User
                     if (ButtonPressed == "Sim") {
                        window.location.hash = "login";
                        $auth.logout();
+                      
+
                     }
                 });
 
