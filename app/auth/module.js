@@ -4,8 +4,8 @@ angular.module('app.auth', ['ui.router','satellizer'])
 
   .config(function($stateProvider,$authProvider) {
 
-    $authProvider.loginUrl = 'http://192.168.43.130/api/api/authenticate';
-    $authProvider.signupUrl = 'http://192.168.43.130/api/api/register';
+    $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
+    $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
 
     // $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
     // $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';

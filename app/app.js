@@ -109,7 +109,7 @@ angular.module('app', [
 
     })
     .service('socket', function($timeout) {
-        this.socket = io.connect('http://192.168.43.130:7000');
+        this.socket = io.connect('http://54.94.213.49:7000');
 
         this.on = function(eventName, callback) {
             if (this.socket) {
