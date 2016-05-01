@@ -17,7 +17,8 @@
       "moment-timezone",
       "notification",
       "smartwidgets",
-      "satellizer" 
+      "satellizer",
+      "angular-moment"
 
 
     ],
@@ -50,7 +51,7 @@
 
   },
   "paths": {
-
+    "angular-moment": "bower_components/angular-moment/angular-moment.min.js",
     "satellizer": "bower_components/satellizer/satellizer.min.js",
     "jquery": "bower_components/jquery/jquery.min.js",
     "jquery-ui": "bower_components/jquery-ui/jquery-ui.min.js",

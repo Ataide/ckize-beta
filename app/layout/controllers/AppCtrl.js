@@ -13,22 +13,23 @@
 
 
         User.initialized.then(function(user) {
+          $scope.$on('$destroy', function() {
+
+              socket.removeListeners();
+          })
+
+          socket.emit('register', {
+              userId: User.id
+          });
+
+          socket.on(User.id, function(data) {
+              sendAlert(data.message)
+              console.log(data);
+          });
 
         });
 
-        $scope.$on('$destroy', function() {
 
-            socket.removeListeners();
-        })
-
-        socket.emit('register', {
-            userId: User.id
-        });
-
-        socket.on(User.id, function(data) {
-            sendAlert(data.message)
-            console.log(data);
-        });
 
 
 

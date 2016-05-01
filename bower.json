@@ -46,6 +46,7 @@
     "x-editable": "~1.5.1",
     "dropzone": "~4.2.0",
     "satellizer": "^0.14.0",
-    "angular-socket-io": "^0.7.0"
+    "angular-socket-io": "^0.7.0",
+    "angular-moment": "^0.10.3"
   }
 }

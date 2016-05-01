@@ -27,7 +27,7 @@ angular.module('app.appViews', ['ui.router'])
                         }
                     }
                 }
-            }, 
+            },
             resolve: {
                 scripts: function(lazyScript){
                     return lazyScript.register([
@@ -58,7 +58,7 @@ angular.module('app.appViews', ['ui.router'])
                 "content@app": {
                     templateUrl: 'app/app-views/views/gallery-demo.html'
                 }
-            }, 
+            },
             resolve: {
                 scripts: function(lazyScript){
                     return lazyScript.register([
@@ -101,7 +101,7 @@ angular.module('app.appViews', ['ui.router'])
                 "content@app": {
                     templateUrl: 'app/app-views/views/forum-post-demo.html'
                 }
-            }, 
+            },
             resolve: {
                 scripts: function(lazyScript){
                     return lazyScript.register([
@@ -113,7 +113,7 @@ angular.module('app.appViews', ['ui.router'])
 
 
         .state('app.appViews.profileDemo', {
-            url: '/profile',
+            url: '/profiles',
             data: {
                 title: 'Profile'
             },

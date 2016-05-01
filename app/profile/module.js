@@ -12,7 +12,7 @@ angular.module('app.profile', ['ui.router'])
             },
             views: {
                 "content@app": {
-                    templateUrl: 'app/home/views/profile.html',
+                    templateUrl: 'app/profile/views/profile.html',
                     controller: 'ProfileCtrl'
                 }
             }

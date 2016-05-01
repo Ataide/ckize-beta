@@ -35,7 +35,7 @@
                                       <!-- //img possible class "online"  -->
                                         <img ng-src="{{post.poster_profile_image || 'styles/img/avatars/male.png'}}" alt="img">
                                         <span class="name"><b>{{post.poster_firstname}}</b> publicou um post.</span>
-                                        <span class="from"><b>{{post.created_at}}</b></span>
+                                        <span class="from"><b><span am-time-ago="post.created_at"></b></span></span>
                                     </div>
                                     <div class="text">
                                         <p>

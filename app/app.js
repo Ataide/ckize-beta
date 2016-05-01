@@ -15,6 +15,7 @@ angular.module('app', [
     'restangular',
     'ui.router',
     'ui.bootstrap',
+    'angularMoment',
     // Smartadmin Angular Common Module
     'SmartAdmin',
     // App
@@ -26,7 +27,8 @@ angular.module('app', [
     //'app.dashboard',
     'app.appViews',
     // 'app.misc',
-    'app.home',
+    'app.profile'
+
 
 ])
 
@@ -99,9 +101,12 @@ angular.module('app', [
     })
     .constant('APP_CONFIG', window.appConfig)
 
-.run(function($rootScope, $state, $stateParams, User, $auth) {
+.run(function($rootScope, $state, $stateParams, User, $auth,amMoment) {
+   amMoment.changeLocale('pt-br');
+
         if ($auth.isAuthenticated()) {
             User.update();
+            $state.go('app.feeds',{});
         }
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
@@ -109,7 +114,7 @@ angular.module('app', [
 
     })
     .service('socket', function($timeout) {
-        this.socket = io.connect('http://54.94.213.49:7000');
+        this.socket = io.connect('http://localhost:7000');
 
         this.on = function(eventName, callback) {
             if (this.socket) {

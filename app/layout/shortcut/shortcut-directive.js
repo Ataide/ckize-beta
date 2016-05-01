@@ -7,7 +7,7 @@ angular.module('app').directive('toggleShortcut', function($log,$timeout) {
 		var shortcut_dropdown = $('#shortcut');
 
 		$element.on('click',function(){
-		
+
 			if (shortcut_dropdown.is(":visible")) {
 				shortcut_buttons_hide();
 			} else {
@@ -22,7 +22,7 @@ angular.module('app').directive('toggleShortcut', function($log,$timeout) {
 			setTimeout(shortcut_buttons_hide, 300);
 		});
 
-		
+
 
 		// SHORTCUT buttons goes away if mouse is clicked outside of the area
 		$(document).mouseup(function(e) {
@@ -59,4 +59,4 @@ angular.module('app').directive('toggleShortcut', function($log,$timeout) {
 		restrict:'EA',
 		link:link
 	}
-})
+});

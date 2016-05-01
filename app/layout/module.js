@@ -16,6 +16,6 @@ angular.module('app.layout', ['ui.router'])
                 }
             }
         });
-    $urlRouterProvider.otherwise('/feeds');
+    $urlRouterProvider.otherwise('/login');
 
 })
