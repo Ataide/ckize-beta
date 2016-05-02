@@ -1,6 +1,15 @@
 'use strict';
 
-angular.module('app.chat').factory('ChatApi', function ($q, $rootScope, User, $http, APP_CONFIG) {
+angular.module('app.chat')
+.controller('ChatCtrl', function($scope,$http,APP_CONFIG) {
+
+  $http.get(APP_CONFIG.apiUrl+'/friends').then(function(response){
+    $scope.amigos = response.data;
+  });
+
+})
+
+.factory('ChatApi', function ($q, $rootScope, User, $http, APP_CONFIG) {
     var dfd = $q.defer();
     var _user;
     var ChatSrv = {

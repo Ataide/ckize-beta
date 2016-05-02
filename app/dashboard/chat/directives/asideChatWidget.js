@@ -1,21 +1,21 @@
 (function() {
-        
+
    'use strict';
 
     /*
     * SMARTCHAT PLUGIN ARRAYS & CONFIG
-    * Dependency: js/plugin/moment/moment.min.js 
-    *             js/plugin/cssemotions/jquery.cssemoticons.min.js 
+    * Dependency: js/plugin/moment/moment.min.js
+    *             js/plugin/cssemotions/jquery.cssemoticons.min.js
     *             js/smart-chat-ui/smart.chat.ui.js
-    * (DO NOT CHANGE) 
-    */ 
+    * (DO NOT CHANGE)
+    */
         var boxList = [],
         showList = [],
         nameList = [],
         idList = [];
     /*
     * Width of the chat boxes, and the gap inbetween in pixel (minus padding)
-    */ 
+    */
         var chatbox_config = {
             width: 200,
             gap: 35,
@@ -245,7 +245,7 @@
             if (!self.options.hidden) {
                 uiChatbox.show();
             }
-            
+
             $(".ui-chatbox [rel=tooltip]").tooltip();
             //console.log("tooltip created");
         },
@@ -342,7 +342,7 @@
       "[+=..]":  { cssClass: "no-rotate nintendo-controller" }
       //"OwO":  { cssClass: "no-rotate" }, // these emoticons overflow and look weird even if they're made even smaller, could probably fix this with some more css trickery
       //"O-O":  { cssClass: "no-rotate" },
-      //"O=)":    { cssClass: "small-emoticon" } 
+      //"O=)":    { cssClass: "small-emoticon" }
     }
 
     var specialRegex = new RegExp( '(\\' + escapeCharacters.join('|\\') + ')', 'g' );
@@ -375,15 +375,15 @@
       var container = $(this);
       var cssClass = 'css-emoticon'
       if(opts.animate){ cssClass += ' un-transformed-emoticon animated-emoticon'; }
-      
+
       for( var emoticon in specialEmoticons ){
         var specialCssClass = cssClass + " " + specialEmoticons[emoticon].cssClass;
         container.html(container.html().replace(specialEmoticons[emoticon].regexp,"$1<span class='" + specialCssClass + "'>$2</span>"));
       }
       $(threeCharacterEmoticons).each(function(){
         container.html(container.html().replace(this,"$1<span class='" + cssClass + "'>$2</span>"));
-      });                                                          
-      $(twoCharacterEmoticons).each(function(){                    
+      });
+      $(twoCharacterEmoticons).each(function(){
         container.html(container.html().replace(this,"$1<span class='" + cssClass + " spaced-emoticon'>$2</span>"));
       });
       // fix emoticons that got matched more then once (where one emoticon is a subset of another emoticon), and thus got nested spans
@@ -407,7 +407,7 @@
         var span = $(this);
         if(opts.animate){
           span.addClass('un-transformed-emoticon');
-          setTimeout(function(){span.replaceWith(span.text());}, opts.delay); 
+          setTimeout(function(){span.replaceWith(span.text());}, opts.delay);
         }else{
           span.replaceWith(span.text());
         }
@@ -419,7 +419,7 @@
     })(jQuery);
 
     var chatboxManager = function () {
-        
+
     var init = function (options) {
         $.extend(chatbox_config, options)
     };
@@ -450,6 +450,7 @@
 
     // caller should guarantee the uniqueness of id
     var addBox = function (id, user, name) {
+      alert('asd');
         var idx1 = showList.indexOf(id);
         var idx2 = boxList.indexOf(id);
         if (idx1 != -1) {
@@ -520,7 +521,7 @@
 
 
                 chatboxManager.addBox(temp_chat_id, {
-                    // dest:"dest" + counter, 
+                    // dest:"dest" + counter,
                     // not used in demo
                     title: "username" + temp_chat_id,
                     first_name: fname,
@@ -547,4 +548,4 @@
         }
     });
 
-})(); 
+})();

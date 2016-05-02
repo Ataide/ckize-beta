@@ -27,3 +27,16 @@
     font-weight: bold;
 
 }
+
+.chat-body li.message .message-text {
+min-height: 45px;
+min-width: 90%;
+
+}
+
+body.smart-style-6 .login-info a span {
+margin-top: 0;
+}
+body.smart-style-6 .login-info img {
+width: 70px
+}

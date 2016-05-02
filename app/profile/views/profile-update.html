@@ -1,0 +1,130 @@
+<div id="content">
+    <!-- end row -->
+    <!-- row -->
+    <div class="row">
+
+        <article class="col-sm-12 col-md-12 col-lg-8">
+
+            <div class="jarviswidget jarviswidget-color-blue jarviswidget-sortable">
+
+                <header role="heading">
+                    <div class="jarviswidget-ctrls" role="menu"></div>
+                    <h2>Update Profile </h2>
+                    <span class="jarviswidget-loader">
+            <i class="fa fa-refresh fa-spin"></i>
+          </span>
+                </header>
+
+                <!-- widget div-->
+                <div role="content">
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
+
+                        <form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+                            <header>
+                                Dados
+                            </header>
+
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="fname">Nome:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                            <input type="text" name="fname" placeholder="First name" ng-model="user_update.first_name">
+                                        </label>
+                                    </section>
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="fname">Sobrenome:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                            <input type="text" name="lname" placeholder="Last name" ng-model="user_update.last_name">
+                                        </label>
+                                    </section>
+                                </div>
+
+                                <div class="row">
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="email">Email:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-envelope-o"></i>
+                                            <input type="email" name="email" placeholder="E-mail" ng-model="user_update.email">
+                                        </label>
+                                    </section>
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="site">Site:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-home"></i>
+                                            <input type="text" name="site" placeholder="Home Page" ng-model="user_update.home_page">
+                                        </label>
+                                    </section>
+                                </div>
+
+                                <div class="row">
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="ocupation">Profissão:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-heart-o"></i>
+                                            <input type="text" name="ocupation" placeholder="Profissão" ng-model="user_update.skills">
+                                        </label>
+                                    </section>
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="phone">Telefone:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                                            <input type="tel" name="phone" placeholder="Phone" ng-model="user_update.phone_number_1">
+                                        </label>
+                                    </section>
+                                </div>
+
+                                <div class="row">
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="email">Estado:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-globe"></i>
+                                            <input type="text" name="state" placeholder="Estado">
+                                        </label>
+                                    </section>
+                                    <section class="col col-md-6 col-sm-12">
+                                        <label for="phone">Cidade:</label>
+                                        <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
+                                            <input type="text" name="city" placeholder="Cidade">
+                                        </label>
+                                    </section>
+                                </div>
+
+                            </fieldset>
+
+                            <fieldset>
+                              <div class="row">
+                                <section class="col col-md-12 col-sm-12">
+                									<label class="label">Sobre mim:</label>
+                									<label class="textarea">
+                                    <i class="icon-append fa fa-comment"></i>
+                                    <textarea rows="4" name="comment" ng-model="user_update.aboutme"></textarea>
+                                  </label>
+                									<div class="note">
+                										Fale um pouco sobre você para que os outros vejam!
+                									</div>
+        							          </section>
+                              </div>
+                            </fieldset>
+
+                            <footer>
+                                <button type="button" class="btn btn-primary" ng-click="salvar()">
+                                    Salvar
+                                </button>
+                                <button type="button" class="btn btn-danger" ng-click="voltar()">
+                                  Voltar
+                                </button>
+                            </footer>
+                        </form>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+
+
+        </article>
+
+    </div>
+
+</div>

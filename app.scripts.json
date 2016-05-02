@@ -18,7 +18,8 @@
       "notification",
       "smartwidgets",
       "satellizer",
-      "angular-moment"
+      "angular-moment",
+      "angular-mask"
 
 
     ],
@@ -51,6 +52,7 @@
 
   },
   "paths": {
+    "angular-mask": "bower_components/ngMask/dist/ngMask.min.js",
     "angular-moment": "bower_components/angular-moment/angular-moment.min.js",
     "satellizer": "bower_components/satellizer/satellizer.min.js",
     "jquery": "bower_components/jquery/jquery.min.js",

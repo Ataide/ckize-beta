@@ -23,7 +23,7 @@ angular.module('app', [
     'app.layout',
     'app.feeds',
     'app.friends',
-    //'app.chat',
+    'app.chat',
     //'app.dashboard',
     'app.appViews',
     // 'app.misc',
