@@ -12,7 +12,10 @@
                                 <div class="well text-center connect">
                                     <img ng-src="{{user.profile.profile_picture_url || 'styles/img/avatars/male.png'}}" width="72" alt="img" class="margin-bottom-5 margin-top-5">
                                     <br>
-                                    <span class="font-xs"><b>{{user.profile.display_name}}</b></span><br>
+                                    <a href="" ui-sref="app.profile.details({userId: user.profile.user_id})">
+                                      <span class="font-xs"><b>{{user.name}}</b></span>
+                                    </a>
+                                    <br>
                                     <button class="btn btn-xs btn-success margin-top-5 margin-bottom-5" ng-click="sendFriendRequest(user)"> <span class="font-xs">Conectar</span> </button>
                                 </div>
                             </div>

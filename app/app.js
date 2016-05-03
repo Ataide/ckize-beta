@@ -31,6 +31,9 @@ angular.module('app', [
 
 
 ])
+.config(["$socketProvider", function ($socketProvider) {
+      $socketProvider.setUrl("http://localhost:7000");
+    }])
 
 .config(function($provide, $httpProvider, RestangularProvider) {
 
@@ -111,31 +114,5 @@ angular.module('app', [
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         // editableOptions.theme = 'bs3';
-
-    })
-    .service('socket', function($timeout) {
-        this.socket = io.connect('http://localhost:7000');
-
-        this.on = function(eventName, callback) {
-            if (this.socket) {
-                this.socket.on(eventName, function(data) {
-                    $timeout(function() {
-                        callback(data);
-                    });
-                });
-            }
-        };
-
-        this.emit = function(eventName, data) {
-            if (this.socket) {
-                this.socket.emit(eventName, data);
-            }
-        };
-
-        this.removeListeners = function() {
-            if (this.socket) {
-                this.socket.removeAllListeners();
-            }
-        };
 
     });

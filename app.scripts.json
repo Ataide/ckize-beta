@@ -19,7 +19,8 @@
       "smartwidgets",
       "satellizer",
       "angular-moment",
-      "angular-mask"
+      "angular-mask",
+      "ngSocket"
 
 
     ],
@@ -52,6 +53,7 @@
 
   },
   "paths": {
+    "ngSocket": "ckize-libs/ngSocket.js",
     "angular-mask": "bower_components/ngMask/dist/ngMask.min.js",
     "angular-moment": "bower_components/angular-moment/angular-moment.min.js",
     "satellizer": "bower_components/satellizer/satellizer.min.js",

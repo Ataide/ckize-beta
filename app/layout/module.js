@@ -1,11 +1,9 @@
 "use strict";
 
 
-angular.module('app.layout', ['ui.router'])
+angular.module('app.layout', ['ui.router','ngSocket'])
 
 .config(function ($stateProvider, $urlRouterProvider) {
-
-
     $stateProvider
         .state('app', {
             abstract: true,

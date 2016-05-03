@@ -1,9 +1,13 @@
 'use strict';
 
-angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService) {
+angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService,$rootScope) {
   $scope.post = {};
 
   getFeeds();
+
+  $rootScope.$on('event', function(data){
+    alert('PRonto');
+  });
 
 
   function getFeeds() {

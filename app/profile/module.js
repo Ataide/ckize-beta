@@ -22,6 +22,23 @@ angular.module('app.profile', ['ui.router','ngMask'])
               }
             }
         })
+        .state('app.profile.details', {
+          url:'/details/{userId}',
+          data: {
+            title: 'Profile'
+          },
+          views: {
+            "content@app": {
+              templateUrl: 'app/profile/views/profile-details.html',
+              controller: 'ProfileDetailsCtrl'
+            }
+          },
+          resolve: {
+            data: function($http, APP_CONFIG,$stateParams) {
+              return $http.get(APP_CONFIG.apiUrl+'/profile/'+$stateParams.userId);
+            }
+          }
+        })
         .state('app.profile.update',{
           url:'/update',
           data: {

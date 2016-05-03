@@ -325,6 +325,9 @@ angular.module('app', [
 
 
 ])
+.config(["$socketProvider", function ($socketProvider) {
+      $socketProvider.setUrl("http://localhost:7000");
+    }])
 
 .config(function($provide, $httpProvider, RestangularProvider) {
 
@@ -405,32 +408,6 @@ angular.module('app', [
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
         // editableOptions.theme = 'bs3';
-
-    })
-    .service('socket', function($timeout) {
-        this.socket = io.connect('http://localhost:7000');
-
-        this.on = function(eventName, callback) {
-            if (this.socket) {
-                this.socket.on(eventName, function(data) {
-                    $timeout(function() {
-                        callback(data);
-                    });
-                });
-            }
-        };
-
-        this.emit = function(eventName, data) {
-            if (this.socket) {
-                this.socket.emit(eventName, data);
-            }
-        };
-
-        this.removeListeners = function() {
-            if (this.socket) {
-                this.socket.removeAllListeners();
-            }
-        };
 
     });
 
@@ -810,11 +787,9 @@ angular.module('app.profile', ['ui.router'])
 "use strict";
 
 
-angular.module('app.layout', ['ui.router'])
+angular.module('app.layout', ['ui.router','ngSocket'])
 
 .config(function ($stateProvider, $urlRouterProvider) {
-
-
     $stateProvider
         .state('app', {
             abstract: true,
@@ -980,6 +955,23 @@ angular.module('app.profile', ['ui.router','ngMask'])
                 return $http.get(APP_CONFIG.apiUrl+'/profile');
               }
             }
+        })
+        .state('app.profile.details', {
+          url:'/details/{userId}',
+          data: {
+            title: 'Profile'
+          },
+          views: {
+            "content@app": {
+              templateUrl: 'app/profile/views/profile-details.html',
+              controller: 'ProfileDetailsCtrl'
+            }
+          },
+          resolve: {
+            data: function($http, APP_CONFIG,$stateParams) {
+              return $http.get(APP_CONFIG.apiUrl+'/profile/'+$stateParams.userId);
+            }
+          }
         })
         .state('app.profile.update',{
           url:'/update',
@@ -1682,10 +1674,14 @@ angular.module('app').controller('TodoCtrl', function ($scope, $timeout, Todo) {
 });
 'use strict';
 
-angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService) {
+angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService,$rootScope) {
   $scope.post = {};
 
   getFeeds();
+
+  $rootScope.$on('event', function(data){
+    alert('PRonto');
+  });
 
 
   function getFeeds() {
@@ -1837,29 +1833,23 @@ angular.module('app.friends').controller('FriendsCtrl', function ($scope,$state,
 
     angular.module('app.layout')
         .controller('AppCtrl', AppCtrl);
-    AppCtrl.$inject = ['User', 'socket', '$scope', '$timeout'];
+    AppCtrl.$inject = ['User', '$socket', '$scope', '$timeout','$rootScope'];
 
-    function AppCtrl(User, socket, $scope,$timeout) {
-
-
+    function AppCtrl(User, $socket, $scope, $timeout,$rootScope) {
         var vm = this;
         vm.qtd = 7;
 
 
         User.initialized.then(function(user) {
-          $scope.$on('$destroy', function() {
+            $socket.emit('register', {
+                userId: User.id
+            });
 
-              socket.removeListeners();
-          })
-
-          socket.emit('register', {
-              userId: User.id
-          });
-
-          socket.on(User.id, function(data) {
+            $socket.on(User.id, $scope, function(data) {
+              $rootScope.$emit('event',[1,2,3]);
               sendAlert(data.message)
               console.log(data);
-          });
+            });
 
         });
 
@@ -2049,6 +2039,17 @@ angular.module('app.profile')
 
 });
 
+})();
+
+(function(){
+  'use strict';
+
+  angular.module('app.profile')
+    .controller('ProfileDetailsCtrl', function($scope,data) {
+
+      $scope.current_user = data.data;
+      
+    });
 })();
 
 (function(){

@@ -3,29 +3,23 @@
 
     angular.module('app.layout')
         .controller('AppCtrl', AppCtrl);
-    AppCtrl.$inject = ['User', 'socket', '$scope', '$timeout'];
+    AppCtrl.$inject = ['User', '$socket', '$scope', '$timeout','$rootScope'];
 
-    function AppCtrl(User, socket, $scope,$timeout) {
-
-
+    function AppCtrl(User, $socket, $scope, $timeout,$rootScope) {
         var vm = this;
         vm.qtd = 7;
 
 
         User.initialized.then(function(user) {
-          $scope.$on('$destroy', function() {
+            $socket.emit('register', {
+                userId: User.id
+            });
 
-              socket.removeListeners();
-          })
-
-          socket.emit('register', {
-              userId: User.id
-          });
-
-          socket.on(User.id, function(data) {
+            $socket.on(User.id, $scope, function(data) {
+              $rootScope.$emit('event',[1,2,3]);
               sendAlert(data.message)
               console.log(data);
-          });
+            });
 
         });
 
