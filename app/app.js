@@ -32,7 +32,7 @@ angular.module('app', [
 
 ])
 .config(["$socketProvider", function ($socketProvider) {
-      $socketProvider.setUrl("http://localhost:7000");
+      $socketProvider.setUrl("http://54.94.213.49:3000");
     }])
 
 .config(function($provide, $httpProvider, RestangularProvider) {

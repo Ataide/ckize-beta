@@ -1,33 +1,35 @@
 'use strict';
 
-angular.module('app.feeds').controller('FeedsController', function ($scope,$http,User,APP_CONFIG, FeedsService,$rootScope) {
-  $scope.post = {};
-
-  getFeeds();
-
-  $rootScope.$on('event', function(data){
-    alert('PRonto');
-  });
+angular.module('app.feeds').controller('FeedsController', function($scope, $http, User, APP_CONFIG, FeedsService, $rootScope) {
+    $scope.post = {};
+    getFeeds();
 
 
-  function getFeeds() {
-      FeedsService.getFeeds().then(function(response) {
-        $scope.feeds = response.data;
-        console.log(response.data);
+    $scope.publish = function() {
+      $scope.post.poster_firstname = User.username;
+      FeedsService.publish($scope.post).then(function(response) {
+        delete $scope.post;
+        getFeeds();
       });
-  }
+    }
 
-  getFeeds();
+    function getFeeds() {
+        FeedsService.getFeeds().then(function(response) {
+            $scope.feeds = response.data;
+        });
+    }
 
-  $scope.publish = function() {
-    $scope.post.poster_firstname = User.username;
-    FeedsService.publish($scope.post).then(function(response) {
-      delete $scope.post;
-      getFeeds();
+
+
+    var postListener = $rootScope.$on('newFriendPost', function(data) {
+      FeedsService.getFeeds().then(function(response) {
+          console.log(response);
+          $scope.feeds = response.data;
+      });
     });
 
-
-  }
-
-
+    //destroy listener's on destroy a controller.
+    $scope.$on('$destroy', function() {
+      postListener();
+    });
 });
