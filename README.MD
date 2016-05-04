@@ -14,6 +14,11 @@ Now with all dependencies installed
 4. Start the development server for demo project with `npm run dev`
 5. Point your browser to [http://localhost:8888](http://localhost:8888)
 
+Demo
+-----------
+
+http://54.94.213.49/ckize
+
 -----------------------------------------------
 
 production
