@@ -8,6 +8,9 @@
     function AppCtrl(User, $socket, $scope, $timeout, $rootScope) {
         var vm = this;
         vm.qtd = 0;
+        vm.love = function(){
+          love();
+        };
 
         User.initialized.then(function(user) {
             $socket.emit('register', {
@@ -48,6 +51,17 @@
             });
         }
 
+        var clean = function(h) {
+            h.parentNode.removeChild(h);
+        };
 
+        var love = function() {
+            var h = document.createElement('span');
+            h.className = 'heart';
+            document.body.appendChild(h);
+            setTimeout(function() {
+                clean(h);
+            }, 3000);
+        };
     }
 })()

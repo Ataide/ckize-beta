@@ -16,7 +16,8 @@
                                       <span class="font-xs"><b>{{user.name}}</b></span>
                                     </a>
                                     <br>
-                                    <button class="btn btn-xs btn-success margin-top-5 margin-bottom-5" ng-click="sendFriendRequest(user)"> <span class="font-xs">Conectar</span> </button>
+                                    <button class="btn btn-xs btn-success margin-top-5 margin-bottom-5" ng-if="!user.isFriend" ng-click="sendFriendRequest(user)"> <span class="font-xs">Conectar</span> </button>
+                                    <button class="btn btn-xs btn-primary margin-top-5 margin-bottom-5" ng-if="user.isFriend"> <span class="font-xs">Amigo</span> </button>
                                 </div>
                             </div>
                         </div>

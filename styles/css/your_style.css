@@ -40,3 +40,80 @@ margin-top: 0;
 body.smart-style-6 .login-info img {
 width: 70px
 }
+
+
+
+@-webkit-keyframes lovin {
+  0% {
+    opacity: .25;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    -webkit-transform: translateY(-245px);
+            transform: translateY(-245px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-240px) scale(1.1, 1.1);
+            transform: translateY(-240px) scale(1.1, 1.1);
+  }
+}
+@keyframes lovin {
+  0% {
+    opacity: .25;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    -webkit-transform: translateY(-245px);
+            transform: translateY(-245px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-240px) scale(1.1, 1.1);
+            transform: translateY(-240px) scale(1.1, 1.1);
+  }
+}
+
+
+span.heart {
+  position: fixed;
+  top: 100%;
+  margin-top: -40px;
+  right: 1.5%;
+  font-size: 0;
+}
+
+.heart {
+  -webkit-animation-name: lovin;
+          animation-name: lovin;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  opacity: 0;
+  width: 32px;
+  height: 29px;
+}
+.heart::before, .heart::after {
+  position: absolute;
+  content: '';
+  left: 50%;
+  top: 0;
+  width: 50%;
+  height: 88%;
+  background: #f68d8d;
+  border-radius: 50px 50px 0 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;
+}
+.heart::after {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}

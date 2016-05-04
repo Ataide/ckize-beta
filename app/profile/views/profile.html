@@ -37,13 +37,16 @@
                                 <div class="col-sm-12">
                                     <div class="row">
                                         <div class="col-sm-3 profile-pic">
-                                            <img ng-src="{{current_user.profile.profile_picture_url}}" alt="demo user"></img>
+                                            <img ng-src="{{current_user.profile.profile_picture_url}}" width="128" alt="demo user"></img>
                                             <div class="padding-10">
                                               <h4 class="font-md"><strong>{{current_user.friends.length}}</strong>
                                                 <br>
                                                 <small>Amigos</small>
                                               </h4>
                                                 <br>
+                                                <a ui-sref="app.profile.update" class="btn btn-primary hidden-xs"><i class="fa fa-pencil-square-o"></i> Editar</a>
+
+
                                               <!-- <h4 class="font-md"><strong>419</strong>
                                                 <br>
                                                 <small>Connections</small>
@@ -90,13 +93,13 @@
                                                 {{current_user.profile.aboutme}}
                                             </p>
                                             <br>
-                                            <a ui-sref="app.profile.update" class="btn btn-default btn-xs"><i class="fa fa-envelope-o"></i> Send Message</a>
+
                                             <br>
                                             <br>
                                         </div>
                                         <div class="col-sm-3">
                                             <h1>
-                    <small>Connections</small>
+                    <small>Conexões</small>
                 </h1>
                                             <ul class="list-inline friends-list">
                                                 <li ng-repeat="friend in current_user.friends">
