@@ -10,12 +10,8 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div id="myCarousel" class="carousel fade profile-carousel">
-                                        <div class="air air-bottom-right padding-10" ng-if="current_user.profile.user_id != user.id">
-                                            <a href-void class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&#xA0;
-                                            <a href-void class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-link"></i> Connect</a>
-                                        </div>
                                         <div class="air air-top-left padding-10">
-                                            <h4 class="txt-color-white font-md">Ataide Bastos</h4>
+                                            <h4 class="txt-color-white font-md">...</h4>
                                         </div>
                                         <ol class="carousel-indicators">
                                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -45,13 +41,13 @@
                                             <div class="padding-10">
                                               <h4 class="font-md"><strong>{{current_user.friends.length}}</strong>
                                                 <br>
-                                                <small>Followers</small>
+                                                <small>Amigos</small>
                                               </h4>
                                                 <br>
-                                              <h4 class="font-md"><strong>419</strong>
+                                              <!-- <h4 class="font-md"><strong>419</strong>
                                                 <br>
                                                 <small>Connections</small>
-                                              </h4>
+                                              </h4> -->
                                             </div>
                                         </div>
 
@@ -64,22 +60,22 @@
                                             <ul class="list-unstyled">
                                               <li>
                                                   <p class="text-muted">
-                                                      <i class="fa fa-user"></i>&#xA0;&#xA0; <span class="txt-color-darken"> Ataide Bastos</span>
+                                                      <i class="fa fa-user"></i>&#xA0;&#xA0; <span class="txt-color-darken">{{current_user.profile.first_name}} {{current_user.profile.last_name}}</span>
                                                   </p>
                                               </li>
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-phone"></i>&#xA0;&#xA0;(<span class="txt-color-darken">313</span>) <span class="txt-color-darken">464</span> - <span class="txt-color-darken">6473</span>
+                                                        <i class="fa fa-phone"></i>&#xA0;&#xA0;<span class="txt-color-darken">{{current_user.profile.phone_number_1}}</span>
                                                     </p>
                                                 </li>
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-envelope"></i>&#xA0;&#xA0;<a href="mailto:simmons@smartadmin">{{current_user.profile.email}}</a>
+                                                        <i class="fa fa-envelope"></i>&#xA0;&#xA0;<a href="mailto:{{current_user.profile.email}}">{{current_user.profile.email}}</a>
                                                     </p>
                                                 </li>
                                                 <li>
                                                     <p class="text-muted">
-                                                        <i class="fa fa-map-marker"></i>&#xA0;&#xA0; <span class="txt-color-darken"> Ataide Bastos</span>
+                                                        <i class="fa fa-map-marker"></i>&#xA0;&#xA0; <span class="txt-color-darken"> {{current_user.profile.address}}</span>
                                                     </p>
                                                 </li>
 

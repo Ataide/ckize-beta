@@ -10,29 +10,29 @@
  */
 
 angular.module('app', [
-    'ngSanitize',
-    'ngAnimate',
-    'restangular',
-    'ui.router',
-    'ui.bootstrap',
-    'angularMoment',
-    // Smartadmin Angular Common Module
-    'SmartAdmin',
-    // App
-    'app.auth',
-    'app.layout',
-    'app.feeds',
-    'app.friends',
-    'app.chat',
-    //'app.dashboard',
-    'app.appViews',
-    // 'app.misc',
-    'app.profile'
+        'ngSanitize',
+        'ngAnimate',
+        'restangular',
+        'ui.router',
+        'ui.bootstrap',
+        'angularMoment',
+        // Smartadmin Angular Common Module
+        'SmartAdmin',
+        // App
+        'app.auth',
+        'app.layout',
+        'app.feeds',
+        'app.friends',
+        // 'app.chat',
+        //'app.dashboard',
+        // 'app.appViews',
+        // 'app.misc',
+        'app.profile'
 
 
-])
-.config(["$socketProvider", function ($socketProvider) {
-      $socketProvider.setUrl("http://54.94.213.49:3000");
+    ])
+    .config(["$socketProvider", function($socketProvider) {
+        $socketProvider.setUrl("http://54.94.213.49:3000");
     }])
 
 .config(function($provide, $httpProvider, RestangularProvider) {
@@ -99,20 +99,31 @@ angular.module('app', [
         // Add the interceptor to the $httpProvider.
         $httpProvider.interceptors.push('myInterceptors');
 
-        RestangularProvider.setBaseUrl(location.pathname.replace(/[^\/]+?$/, ''));
-
     })
     .constant('APP_CONFIG', window.appConfig)
 
-.run(function($rootScope, $state, $stateParams, User, $auth,amMoment) {
-   amMoment.changeLocale('pt-br');
+.run(function($rootScope, $state, $stateParams, User, $auth, amMoment) {
+    amMoment.changeLocale('pt-br');
 
-        if ($auth.isAuthenticated()) {
-            User.update();
-            $state.go('app.feeds',{});
-        }
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-        // editableOptions.theme = 'bs3';
+    $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams, options) {
+          if(toState.name == 'login'){
+            if($('body').hasClass('fixed-header') && $('body').hasClass('container')){
+              $('body').removeClass('fixed-header');
+              $('body').removeClass('container');
+            }
+          }else{
+            $('body').addClass('fixed-header');
+            $('body').addClass('container');
+          }
+        });
 
-    });
+    if ($auth.isAuthenticated()) {
+        User.update();
+        $state.go('app.feeds', {});
+    }
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+    // editableOptions.theme = 'bs3';
+
+});

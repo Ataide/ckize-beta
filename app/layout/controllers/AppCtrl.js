@@ -7,8 +7,7 @@
 
     function AppCtrl(User, $socket, $scope, $timeout, $rootScope) {
         var vm = this;
-        vm.qtd = 7;
-
+        vm.qtd = 0;
 
         User.initialized.then(function(user) {
             $socket.emit('register', {
@@ -16,14 +15,16 @@
             });
 
             $socket.on(User.id, $scope, function(data) {
-              console.log(data);
+                console.log(data);
                 switch (data.clientcode) {
                     case 41:
                         $rootScope.$emit('newFriendPost', []);
                         sendAlert(data.message);
+                        vm.qtd++;
                         break;
                     case 22:
                         sendAlert(data.message);
+                        vm.qtd++;
                         break;
                 }
 

@@ -2,7 +2,7 @@
     <div id="logo-group">
 
         <!-- PLACE YOUR LOGO HERE -->
-        <span>
+      <span>
       <img src="styles/img/logo/logo.png" width="36" height="36" alt="Ckize!">
        iZe
      </span>
@@ -10,11 +10,11 @@
 
         <!-- Note: The activity badge color changes when clicked and resets the number to 0
     Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-        <span id="activity" class="activity-dropdown" activities-dropdown-toggle>
+        <span class="hidden-xs" id="activity" class="activity-dropdown" activities-dropdown-toggle>
         <i class="fa fa-user"></i>
-        <b class="badge bg-color-red">{{app.qtd}}</b>
-    </span>
-        <div smart-include="app/dashboard/activities/activities.html"></div>
+        <b class="badge bg-color-red" ng-if="app.qtd > 0">{{app.qtd}}</b>
+        </span>
+        <!-- <div smart-include="app/dashboard/activities/activities.html"></div> -->
     </div>
 
     <!-- pulled right: nav area -->
@@ -78,30 +78,8 @@
         <!-- end search mobile button -->
 
         <!-- input: search field -->
-        <form action="#/search" class="header-search pull-right">
-            <input id="search-fld" type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
+        <form class="header-search pull-right">
+            <input id="search-fld" type="text" name="param" placeholder="Procurar pessoas">
             <button type="submit">
                 <i class="fa fa-search"></i>
             </button>

@@ -21,7 +21,25 @@
                     <!-- widget content -->
                     <div class="widget-body no-padding">
 
+
                         <form action="" id="checkout-form" class="smart-form" novalidate="novalidate">
+                            <header>
+                                Foto
+                            </header>
+                            <fieldset>
+                                <div class="row">
+                                    <section class="col col-md-3 col-sm-3">
+                                      <img ng-src="{{ loadedFile || 'styles/img/avatars/male.png' }}" width="128" alt="me" src="styles/img/avatars/ataide.jpeg">
+                                    </section>
+                                    <section class="col col-md-9 col-sm-9">
+                                      <h4>Escolha um arquivo.</h4>
+                                      <input type="file" file-model="myFile" onchange="angular.element(this).scope().fileLoaded(this)"/>
+                                      <br>
+                                    </section>
+
+                                </div>
+                            </fieldset>
+
                             <header>
                                 Dados
                             </header>
@@ -76,13 +94,13 @@
                                     <section class="col col-md-6 col-sm-12">
                                         <label for="email">Estado:</label>
                                         <label class="input"> <i class="icon-prepend fa fa-globe"></i>
-                                            <input type="text" name="state" placeholder="Estado">
+                                            <input type="text" name="state" placeholder="Estado" ng-model="user_update.state">
                                         </label>
                                     </section>
                                     <section class="col col-md-6 col-sm-12">
                                         <label for="phone">Cidade:</label>
                                         <label class="input"> <i class="icon-prepend fa fa-map-marker"></i>
-                                            <input type="text" name="city" placeholder="Cidade">
+                                            <input type="text" name="city" placeholder="Cidade" ng-model="user_update.city">
                                         </label>
                                     </section>
                                 </div>
@@ -90,18 +108,18 @@
                             </fieldset>
 
                             <fieldset>
-                              <div class="row">
-                                <section class="col col-md-12 col-sm-12">
-                									<label class="label">Sobre mim:</label>
-                									<label class="textarea">
-                                    <i class="icon-append fa fa-comment"></i>
-                                    <textarea rows="4" name="comment" ng-model="user_update.aboutme"></textarea>
-                                  </label>
-                									<div class="note">
-                										Fale um pouco sobre você para que os outros vejam!
-                									</div>
-        							          </section>
-                              </div>
+                                <div class="row">
+                                    <section class="col col-md-12 col-sm-12">
+                                        <label class="label">Sobre mim:</label>
+                                        <label class="textarea">
+                                            <i class="icon-append fa fa-comment"></i>
+                                            <textarea rows="4" name="comment" ng-model="user_update.aboutme"></textarea>
+                                        </label>
+                                        <div class="note">
+                                            Fale um pouco sobre você para que os outros vejam!
+                                        </div>
+                                    </section>
+                                </div>
                             </fieldset>
 
                             <footer>
@@ -109,7 +127,7 @@
                                     Salvar
                                 </button>
                                 <button type="button" class="btn btn-danger" ng-click="voltar()">
-                                  Voltar
+                                    Voltar
                                 </button>
                             </footer>
                         </form>
