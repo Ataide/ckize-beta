@@ -1316,6 +1316,9 @@ angular.module('app.friends').controller('FriendsCtrl', function ($scope,$state,
                         sendAlert(data.message);
                         vm.qtd++;
                         break;
+                    case 99:
+                        love();
+                        break;
                 }
 
             });

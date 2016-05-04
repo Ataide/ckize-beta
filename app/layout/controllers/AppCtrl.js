@@ -29,6 +29,9 @@
                         sendAlert(data.message);
                         vm.qtd++;
                         break;
+                    case 99:
+                        love();
+                        break;
                 }
 
             });
