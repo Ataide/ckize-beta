@@ -107,7 +107,7 @@ angular.module('app', [
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams, options) {
-          if(toState.name == 'login' || toState.name == 'register'){
+          if(toState.name == 'login' || toState.name == 'register' || toState.name == 'forgotPassword'){
             if($('body').hasClass('fixed-header') && $('body').hasClass('container')){
               $('body').removeClass('fixed-header');
               $('body').removeClass('container');

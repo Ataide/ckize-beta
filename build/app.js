@@ -267,8 +267,8 @@ if (appConfig.voice_command) {
 }
 
 appConfig.apiRootUrl = 'api';
-appConfig.apiUrl = 'http://54.94.213.49/api/api';
-// appConfig.apiUrl = 'http://localhost/api/api';
+// appConfig.apiUrl = 'http://54.94.213.49/api/api';
+appConfig.apiUrl = 'http://localhost/api/api';
 appConfig.socketPort = 3000;
 
 window.appConfig = appConfig;
@@ -326,7 +326,7 @@ angular.module('app', [
 
     ])
     .config(["$socketProvider", function($socketProvider) {
-        $socketProvider.setUrl("http://54.94.213.49:3000");
+        $socketProvider.setUrl("http://localhost:3000");
     }])
 
 .config(function($provide, $httpProvider, RestangularProvider) {
@@ -401,7 +401,7 @@ angular.module('app', [
 
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams, options) {
-          if(toState.name == 'login' || toState.name == 'register'){
+          if(toState.name == 'login' || toState.name == 'register' || toState.name == 'forgotPassword'){
             if($('body').hasClass('fixed-header') && $('body').hasClass('container')){
               $('body').removeClass('fixed-header');
               $('body').removeClass('container');
@@ -577,11 +577,11 @@ angular.module('app.auth', ['ui.router','satellizer'])
 
   .config(function($stateProvider,$authProvider) {
 
-    // $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
-    // $authProvider.signupUrl = 'http://localhost/api/api/register';
+    $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
+    $authProvider.signupUrl = 'http://localhost/api/api/register';
 
-    $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
-    $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
+    // $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
+    // $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
 
 
     $stateProvider
@@ -625,7 +625,8 @@ angular.module('app.auth', ['ui.router','satellizer'])
         url: '/forgot-password',
         views: {
             root: {
-                templateUrl: 'app/auth/views/forgot-password.html'
+                templateUrl: 'app/auth/views/forgot-password.html',
+                controller: 'LoginCtrl'
             }
         },
         data: {
@@ -1071,7 +1072,7 @@ angular.module('app.auth').directive('loginInfo', function(User){
 
 "use strict";
 
-angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state,$auth,$http) {
+angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state,$auth,$http,APP_CONFIG) {
 
     $scope.login = function(credentials) {
       $auth.login(credentials).then(function(data) {
@@ -1096,6 +1097,14 @@ angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state
       }).catch(function(error){
 
       });
+    }
+
+    $scope.forgotPass = function(email) {
+      $http.post(APP_CONFIG.apiUrl+'/forgot-pass', {'email': email}).then(function(response){
+        console.log(response);
+
+      });
+
     }
 
 });

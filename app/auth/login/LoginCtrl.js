@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state,$auth,$http) {
+angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state,$auth,$http,APP_CONFIG) {
 
     $scope.login = function(credentials) {
       $auth.login(credentials).then(function(data) {
@@ -25,6 +25,14 @@ angular.module('app.auth').controller('LoginCtrl', function ($scope,User, $state
       }).catch(function(error){
 
       });
+    }
+
+    $scope.forgotPass = function(email) {
+      $http.post(APP_CONFIG.apiUrl+'/forgot-pass', {'email': email}).then(function(response){
+        console.log(response);
+
+      });
+
     }
 
 });

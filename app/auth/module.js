@@ -52,7 +52,8 @@ angular.module('app.auth', ['ui.router','satellizer'])
         url: '/forgot-password',
         views: {
             root: {
-                templateUrl: 'app/auth/views/forgot-password.html'
+                templateUrl: 'app/auth/views/forgot-password.html',
+                controller: 'LoginCtrl'
             }
         },
         data: {
