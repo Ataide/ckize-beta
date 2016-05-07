@@ -267,8 +267,8 @@ if (appConfig.voice_command) {
 }
 
 appConfig.apiRootUrl = 'api';
-// appConfig.apiUrl = 'http://54.94.213.49/api/api';
-appConfig.apiUrl = 'http://localhost/api/api';
+appConfig.apiUrl = 'http://54.94.213.49/api/api';
+// appConfig.apiUrl = 'http://localhost/api/api';
 appConfig.socketPort = 3000;
 
 window.appConfig = appConfig;
@@ -326,7 +326,7 @@ angular.module('app', [
 
     ])
     .config(["$socketProvider", function($socketProvider) {
-        $socketProvider.setUrl("http://localhost:3000");
+        $socketProvider.setUrl("http://54.94.213.49:3000");
     }])
 
 .config(function($provide, $httpProvider, RestangularProvider) {
@@ -577,11 +577,11 @@ angular.module('app.auth', ['ui.router','satellizer'])
 
   .config(function($stateProvider,$authProvider) {
 
-    $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
-    $authProvider.signupUrl = 'http://localhost/api/api/register';
+    // $authProvider.loginUrl = 'http://localhost/api/api/authenticate';
+    // $authProvider.signupUrl = 'http://localhost/api/api/register';
 
-    // $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
-    // $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
+    $authProvider.loginUrl = 'http://54.94.213.49/api/api/authenticate';
+    $authProvider.signupUrl = 'http://54.94.213.49/api/api/register';
 
 
     $stateProvider
