@@ -29,6 +29,10 @@
                         sendAlert(data.message);
                         vm.qtd++;
                         break;
+                    case 51:
+                        $rootScope.$emit('newFriendRequest',[]);
+                        sendAlertGreen(data.message);
+                        break;
                     case 99:
                         love();
                         break;
@@ -52,6 +56,16 @@
                 iconSmall: "fa fa-user bounce animated",
                 timeout: 5000
             });
+        }
+        function sendAlertGreen(alert){
+          $.smallBox({
+              title: "Notificação",
+              content: alert,
+              color: "#388E3C",
+              iconSmall: "fa fa-user bounce animated",
+              timeout: 5000
+          });
+
         }
 
         var clean = function(h) {

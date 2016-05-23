@@ -62,6 +62,20 @@ angular.module('app.auth', ['ui.router','satellizer'])
         }
     })
 
+    .state('resetPass', {
+        url: '/reset-password/{token}/{userName}',
+        views: {
+            root: {
+                templateUrl: 'app/auth/views/reset-password.html',
+                controller: 'LoginCtrl'
+            }
+        },
+        data: {
+            title: 'Reset Password',
+            htmlId: 'extr-page'
+        }
+    })
+
     .state('lock', {
         url: '/lock',
         views: {

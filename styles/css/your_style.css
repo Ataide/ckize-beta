@@ -27,6 +27,11 @@
     font-weight: bold;
 
 }
+.logo-login{
+  margin-top: 5px;
+  font-size: 40px;
+  font-weight: bold;
+}
 
 .chat-body li.message .message-text {
 min-height: 45px;
@@ -116,4 +121,20 @@ span.heart {
           transform: rotate(45deg);
   -webkit-transform-origin: 100% 100%;
           transform-origin: 100% 100%;
+}
+
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+ background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
 }

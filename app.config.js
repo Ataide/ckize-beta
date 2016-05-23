@@ -148,7 +148,7 @@ appConfig.voice_command_auto = false;
  *  ж—Ґжњ¬иЄћ         ['ja-JP']
  *  Lingua latД«na    ['la']
  */
-appConfig.voice_command_lang = 'en-US';
+appConfig.voice_command_lang = 'pt-BR';
 /*
  *  Use localstorage to remember on/off (best used with HTML Version)
  */
@@ -161,50 +161,20 @@ if (appConfig.voice_command) {
 
      	appConfig.commands = {
 
-        'show dashboard' : function() { window.location.hash = "dashboard" },
-        'show inbox' : function() {  window.location.hash = "inbox/" },
-        'show graphs' : function() {  window.location.hash = "graphs/flot" },
-        'show flotchart' : function() { window.location.hash = "graphs/flot" },
-        'show morris chart' : function() { window.location.hash = "graphs/morris" },
-        'show inline chart' : function() { window.location.hash = "graphs/inline-charts" },
-        'show dygraphs' : function() { window.location.hash = "graphs/dygraphs" },
-        'show tables' : function() { window.location.hash = "tables/table" },
-        'show data table' : function() { window.location.hash = "tables/datatable" },
-        'show jquery grid' : function() { window.location.hash = "tables/jqgrid" },
-        'show form' : function() { window.location.hash = "forms/form-elements" },
-        'show form layouts' : function() { window.location.hash = "forms/form-templates" },
-        'show form validation' : function() { window.location.hash = "forms/validation" },
-        'show form elements' : function() { window.location.hash = "forms/bootstrap-forms" },
-        'show form plugins' : function() { window.location.hash = "forms/plugins" },
-        'show form wizards' : function() { window.location.hash = "forms/wizards" },
-        'show bootstrap editor' : function() { window.location.hash = "forms/other-editors" },
-        'show dropzone' : function() { window.location.hash = "forms/dropzone" },
-        'show image cropping' : function() { window.location.hash = "forms/image-editor" },
-        'show general elements' : function() { window.location.hash = "ui/general-elements" },
-        'show buttons' : function() { window.location.hash = "ui/buttons" },
-        'show fontawesome' : function() { window.location.hash = "ui/icons/fa" },
-        'show glyph icons' : function() { window.location.hash = "ui/icons/glyph" },
-        'show flags' : function() { window.location.hash = "ui/icons/flags" },
-        'show grid' : function() { window.location.hash = "ui/grid" },
-        'show tree view' : function() { window.location.hash = "ui/treeview" },
-        'show nestable lists' : function() { window.location.hash = "ui/nestable-list" },
-        'show jquery U I' : function() { window.location.hash = "ui/jqui" },
-        'show typography' : function() { window.location.hash = "ui/typography" },
-        'show calendar' : function() { window.location.hash = "calendar" },
-        'show widgets' : function() { window.location.hash = "widgets" },
-        'show gallery' : function() { window.location.hash = "gallery" },
-        'show maps' : function() { window.location.hash = "gmap-xml" },
-        'go back' :  function() { history.back(1); },
+        'principal': function(){window.location.hash = 'feeds'},
+        'amigos': function(){window.location.hash = 'friends'},
+        'profile': function(){window.location.hash = 'profile'},
+        'procurar': function(){window.location.hash = 'peoples'},
         'scroll up' : function () { $('html, body').animate({ scrollTop: 0 }, 100); },
         'scroll down' : function () { $('html, body').animate({ scrollTop: $(document).height() }, 100);},
-        'hide navigation' : function() {
+        'esconder menu' : function() {
             if ($( ":root" ).hasClass("container") && !$( ":root" ).hasClass("menu-on-top")){
                 $('span.minifyme').trigger("click");
             } else {
                 $('#hide-menu > span > a').trigger("click");
             }
         },
-        'show navigation' : function() {
+        'mostrar menu' : function() {
             if ($( ":root" ).hasClass("container") && !$( ":root" ).hasClass("menu-on-top")){
                 $('span.minifyme').trigger("click");
             } else {
@@ -237,8 +207,8 @@ if (appConfig.voice_command) {
             smartSpeechRecognition.abort();
             $( ":root" ).removeClass("voice-command-active");
             $.smallBox({
-                title : "VOICE COMMAND OFF",
-                content : "Your voice commands has been successfully turned off. Click on the <i class='fa fa-microphone fa-lg fa-fw'></i> icon to turn it back on.",
+                title : "COMANDO DE VOZ DESABILITADO.",
+                content : "Obrigado por experimentar. Click no icone <i class='fa fa-microphone fa-lg fa-fw'></i> para usar novamente.",
                 color : "#40ac2b",
                 sound_file: 'voice_off',
                 timeout: 8000,

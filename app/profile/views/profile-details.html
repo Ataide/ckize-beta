@@ -11,8 +11,8 @@
                                 <div class="col-sm-12">
                                     <div id="myCarousel" class="carousel fade profile-carousel">
                                         <div class="air air-bottom-right padding-10" ng-if="current_user.profile.user_id != user.id">
-                                            <a href-void class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&#xA0;
-                                            <a href-void class="btn txt-color-white bg-color-pinkDark btn-sm" ng-click="sendLove()"><i class="fa fa-link"></i> Connect</a>
+                                            <!-- <a href-void class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&#xA0; -->
+                                            <a href-void class="btn txt-color-white bg-color-pinkDark btn-sm" ng-click="sendLove()"><i class="fa fa-heart"></i></a>
                                         </div>
                                         <div class="air air-top-left padding-10">
                                             <h4 class="txt-color-white font-md">...</h4>
@@ -41,7 +41,7 @@
                                 <div class="col-sm-12">
                                     <div class="row">
                                         <div class="col-sm-3 profile-pic">
-                                            <img ng-src="{{current_user.profile.profile_picture_url}}" alt="demo user"></img>
+                                            <img ng-src="{{current_user.profile.profile_picture_url || 'styles/img/avatars/male.png'}}" alt="demo user"></img>
                                             <div class="padding-10">
                                               <h4 class="font-md"><strong>{{current_user.friends.length}}</strong>
                                                 <br>
@@ -146,7 +146,7 @@
                                                               {{post.body}}
                                                             </span>
 
-                                                            <ul class="list-inline font-xs">
+                                                            <!-- <ul class="list-inline font-xs">
                                                                 <li>
                                                                     <a href-void="" class="text-info" href="#"><i class="fa fa-reply"></i> Reply</a>
                                                                 </li>
@@ -162,7 +162,7 @@
                                                                 <li>
                                                                     <a href-void="" class="text-danger" href="#" ng-click="removePost(post.id)">Delete</a>
                                                                 </li>
-                                                            </ul>
+                                                            </ul> -->
                                                         </li>
                                                         <!-- <li class="message message-reply">
                                                             <img src="styles/img/avatars/3.png" class="online" alt="user">
